@@ -1,21 +1,13 @@
-const express = require("express");
-const expsHandle = require("express-handlebars");
-const bodyParser = require("body-parser");
-const agendamento = require("../../model/Agendamento");
+const { Router } = require('express');
+const agendamento = require("../model/Agendamento");
 
-const app = express();
+const createRoute = Router();
 
-app.engine('hbs', expsHandle.engine({ extname: '.hbs', defaultLayout: "main" }));
-app.set('view engine', 'hbs');
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-app.get("/", (req, res) => {
+createRoute.get("/", (req, res) => {
     res.render("create")
 });
 
-app.post("/register", (req, res) => {
+const register = Router().post("/register", (req, res) => {
     agendamento.create({
         name: req.body.name,
         address: req.body.address,
@@ -30,7 +22,7 @@ app.post("/register", (req, res) => {
     });
 });
 
-app.get("/list-clients", (req, res) => {
+const list = Router().get("/list-clients", (req, res) => {
 
     agendamento.findAll()
         .then((agendamentos) => {
@@ -47,6 +39,9 @@ app.get("/list-clients", (req, res) => {
 });
 
 
-app.listen(8081, () => {
-    console.log("Server running at port 8081");
-})
+
+module.exports = {
+    createRoute,
+    register,
+    list
+};

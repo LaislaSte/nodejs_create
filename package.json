@@ -6,7 +6,7 @@
   "repository": "https://github.com/LaislaSte/nodejs_create",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/server/server.js"
+    "start": "nodemon server/server.js"
   },
   "author": "Laisla Stephanie",
   "license": "ISC",
