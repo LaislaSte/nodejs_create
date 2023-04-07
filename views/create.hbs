@@ -1,0 +1,38 @@
+<div class="container-sm mt-10">
+
+    <h1 class="h-75 text-success">Register Page</h1>
+    <form class="row g-3 needs-validation" action="/register" method="post">
+        <div class="col-md-6">
+            <label for="inputName" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Nome Completo" required />
+            <div class="invalid-feedback">Nome.</div>
+        </div>
+        <div class="col-md-6">
+            <label for="inputAddress" class="form-label">CEP</label>
+            <input type="number" class="form-control" id="CEP" name="cep" placeholder="Somente números" required />
+            <div class="invalid-feedback">CEP.</div>
+        </div>
+        <div class="col-md-6">
+            <label for="inputCEP" class="form-label">Endereço</label>
+            <input type="text" class="form-control" id="address" name="address" placeholder="Rua" required />
+            <div class="invalid-feedback">Endereço.</div>
+        </div>
+        <div class="col-md-6">
+            <label for="inputCEP" class="form-label">Telefone</label>
+            <input type="number" class="form-control" id="phone" name="phone" placeholder="Telefone" required />
+            <div class="invalid-feedback">Telefone.</div>
+        </div>
+        <div class="col-md-6">
+            <label for="inputCEP" class="form-label">Data de Agendamento</label>
+            <input type="date" class="form-control" id="date" name="date" placeholder="Data" required />
+            <div class="invalid-feedback">Data de Agendamento.</div>
+        </div>
+        <div class="col-md-6">
+            <label for="poinst" class="form-label ">Observações</label>
+            <input type="text" class="form-control" id="observation" name="observation" placeholder="Observaçao" />
+            <div class="invalid-feedback">Observação.</div>
+        </div>
+
+        <button type="submit" class="button btn btn-outline-dark">Cadastrar</button>
+    </form>
+</div>

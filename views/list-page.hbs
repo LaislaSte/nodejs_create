@@ -1,0 +1,38 @@
+<div class="container-sm mt-10">
+
+    <h1 class="h-75 text-success">List Page</h1>
+
+    {{#each agendamentos}}
+    <div class="row g-3 mb-10">
+        <div class="col-md-6">
+            <label class="form-label">Nome: {{dataValues.name}}</label>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Endereço: {{dataValues.cep}}</label>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">CEP: {{dataValues.address}}</label>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Telefone: {{dataValues.phone}}</label>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Data Marcada: {{dataValues.date}}</label>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label ">Observação: {{dataValues.observation}}</label>
+        </div>
+
+        <div class="col-md-6">
+            <button class="btn btn-outline-dark">Alterar</button>
+            <button class="btn btn-outline-danger">Excluir</button>
+        </div>
+
+    </div>
+    {{/each}}
+</div>
