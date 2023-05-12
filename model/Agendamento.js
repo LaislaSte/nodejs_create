@@ -8,13 +8,13 @@ const Agendamentos = db.sequelize.define("agendamentos", {
         type: db.Sequelize.STRING
     },
     cep: {
-        type: db.Sequelize.INTEGER
+        type: db.Sequelize.STRING
     },
     date: {
-        type: db.Sequelize.DATE
+        type: db.Sequelize.DATEONLY
     },
     phone: {
-        type: db.Sequelize.INTEGER
+        type: db.Sequelize.STRING
     },
     observation: {
         type: db.Sequelize.TEXT
