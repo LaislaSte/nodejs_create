@@ -1,38 +1,96 @@
-<div class="container-sm mt-10">
+<div class="container">
 
-    <h1 class="h-75 text-success">Register Page</h1>
-    <form class="row g-3 needs-validation" action="/register" method="post">
-        <div class="col-md-6">
-            <label for="inputName" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Nome Completo" required />
-            <div class="invalid-feedback">Nome.</div>
-        </div>
-        <div class="col-md-6">
-            <label for="inputAddress" class="form-label">CEP</label>
-            <input type="number" class="form-control" id="CEP" name="cep" placeholder="Somente números" required />
-            <div class="invalid-feedback">CEP.</div>
-        </div>
-        <div class="col-md-6">
-            <label for="inputCEP" class="form-label">Endereço</label>
-            <input type="text" class="form-control" id="address" name="address" placeholder="Rua" required />
-            <div class="invalid-feedback">Endereço.</div>
-        </div>
-        <div class="col-md-6">
-            <label for="inputCEP" class="form-label">Telefone</label>
-            <input type="number" class="form-control" id="phone" name="phone" placeholder="Telefone" required />
-            <div class="invalid-feedback">Telefone.</div>
-        </div>
-        <div class="col-md-6">
-            <label for="inputCEP" class="form-label">Data de Agendamento</label>
-            <input type="date" class="form-control" id="date" name="date" placeholder="Data" required />
-            <div class="invalid-feedback">Data de Agendamento.</div>
-        </div>
-        <div class="col-md-6">
-            <label for="poinst" class="form-label ">Observações</label>
-            <input type="text" class="form-control" id="observation" name="observation" placeholder="Observaçao" />
-            <div class="invalid-feedback">Observação.</div>
-        </div>
+    <header class="mb-4 border-bottom border-primary-subtle">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">Pagina Inicial - Registrar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/list-clients">Lista de Clientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/talk-with-friend">Converse com um Amigo</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-        <button type="submit" class="button btn btn-outline-dark">Cadastrar</button>
-    </form>
+    <main>
+        <h1 class="mb-5 text-primary-sutle text-center">Register Page</h1>
+        <form class="row g-3 needs-validation d-flex flex-row justify-content-center" action="/register" method="post">
+            <div class="text-dark d-flex flex-column align-items-center col-6">
+
+                <div class="row mb-4 w-100 d-flex flex-row justify-content-center">
+                    <div class="col">
+                        <label for="inputName" class="form-label fw-bold">Nome</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Nome Completo"
+                            required />
+                        <div class="invalid-feedback">Nome.</div>
+                    </div>
+                </div>
+
+                <div class="row mb-4 w-100 d-flex flex-row justify-content-center">
+                    <div class="col">
+                        <label for="inputAddress" class="form-label fw-bold">CEP</label>
+                        <input type="text" class="form-control" id="CEP" name="cep" placeholder="Somente números"
+                            required />
+                        <div class="invalid-feedback">CEP.</div>
+                    </div>
+                </div>
+
+                <div class="row mb-4 w-100 d-flex flex-row justify-content-center">
+                    <div class="col">
+                        <label for="inputCEP" class="form-label fw-bold">Endereço</label>
+                        <input type="text" class="form-control" id="address" name="address" placeholder="Rua"
+                            required />
+                        <div class="invalid-feedback">Endereço.</div>
+                    </div>
+                </div>
+
+                <div class="row mb-4 w-100 d-flex flex-row justify-content-center">
+                    <div class="col">
+                        <label for="inputCEP" class="form-label fw-bold">Telefone</label>
+                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Telefone"
+                            required />
+                        <div class="invalid-feedback">Telefone.</div>
+                    </div>
+                </div>
+
+                <div class="row mb-4 w-100 d-flex flex-row justify-content-center">
+                    <div class="col">
+                        <label for="inputCEP" class="form-label fw-bold">Data de Agendamento</label>
+                        <input type="date" class="form-control" id="date" name="date" placeholder="Data" required />
+                        <div class="invalid-feedback">Data de Agendamento.</div>
+                    </div>
+                </div>
+
+                <div class="row mb-4 w-100 d-flex flex-row justify-content-center">
+                    <div class="col">
+                        <label for="poinst" class="form-label fw-bold ">Observações</label>
+                        <input type="text" class="form-control" id="observation" name="observation"
+                            placeholder="Observaçao" />
+                        <div class="invalid-feedback">Observação.</div>
+                    </div>
+                </div>
+
+                <div class="row mb-4 w-100 d-flex flex-row justify-content-start">
+                    <div class="col-md-2">
+                        <button type="submit" class="button btn btn-outline-dark">Cadastrar</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+    </main>
 </div>

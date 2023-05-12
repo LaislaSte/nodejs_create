@@ -1,13 +1,22 @@
 const { Router } = require('express');
 const agendamento = require("../model/Agendamento");
+require('dotenv').config()
 
-const createRoute = Router();
+const { Configuration, OpenAIApi } = require("openai");
 
-createRoute.get("/", (req, res) => {
+const configuration = new Configuration({
+    apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
+
+
+const agendamentoRoutes = Router();
+
+agendamentoRoutes.get("/", (req, res) => {
     res.render("create")
 });
 
-const register = Router().post("/register", (req, res) => {
+agendamentoRoutes.post("/register", (req, res) => {
     agendamento.create({
         name: req.body.name,
         address: req.body.address,
@@ -22,14 +31,12 @@ const register = Router().post("/register", (req, res) => {
     });
 });
 
-const list = Router().get("/list-clients", (req, res) => {
-
+agendamentoRoutes.get("/list-clients", (req, res) => {
     agendamento.findAll()
         .then((agendamentos) => {
-            // console.log(agendamentos)
             res.render("list-page",
                 {
-                    agendamentos: agendamentos
+                    agendamentos
                 }
             );
         })
@@ -38,10 +45,63 @@ const list = Router().get("/list-clients", (req, res) => {
         })
 });
 
+agendamentoRoutes.get("/edit/:id", (req, res) => {
+    agendamento.findAll({ where: { 'id': req.params.id } }).then((result) => {
+        res.render("update-page", { agendamento: result })
+    }).catch((error) => {
+        console.log(error);
+    })
+})
+agendamentoRoutes.post("/update", (req, res) => {
+    agendamento.update({
+        name: req.body.name,
+        address: req.body.address,
+        cep: req.body.cep,
+        date: req.body.date,
+        phone: req.body.phone,
+        observation: req.body.observation
+    }, {
+        where:
+            { 'id': req.body.id }
+    }).then((result) => {
+        res.redirect("/list-clients");
+    }).catch((error) => {
+        console.log(error);
+    })
+})
 
+agendamentoRoutes.get("/delete/:id", (req, res) => {
+    agendamento.destroy({ where: { 'id': req.params.id } }).then(() => {
+        res.redirect("/list-clients");
+    }).catch((error) => {
+        console.log(error);
+    })
+})
+
+
+//DESAFIO
+agendamentoRoutes.get("/talk-with-friend", (req, res) => {
+    res.render("chat-page");
+})
+
+agendamentoRoutes.post("/talk-with-chat", async (req, res) => {
+    const { message } = req.body;
+    await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages: [{ role: "user", content: message }],
+    }).then((response) => {
+        const result = [
+            {
+                chat_response: response.data.choices[0].message.content,
+                message
+            }
+        ];
+        res.render("challenge-page", result[0]);
+    }).catch((error) => {
+        console.log(error);
+    })
+})
 
 module.exports = {
-    createRoute,
-    register,
-    list
+    agendamentoRoutes
 };
