@@ -80,26 +80,43 @@ agendamentoRoutes.get("/delete/:id", (req, res) => {
 
 
 //DESAFIO
+/*
+Crie uma página web contendo um formulário com os seguintes campos: produto, marca, modelo, descrição e palavras-chaves, ao usuário preencher as informações referente ao produto, marca e modelo gere a sua respectiva descrição e 100 palavras-chaves utilizando a API OPENAI.
+
+*/
 agendamentoRoutes.get("/talk-with-friend", (req, res) => {
     res.render("chat-page");
 })
 
 agendamentoRoutes.post("/talk-with-chat", async (req, res) => {
-    const { message } = req.body;
-    await openai.createChatCompletion({
-        model: "gpt-3.5-turbo",
-        messages: [{ role: "user", content: message }],
-    }).then((response) => {
-        const result = [
-            {
-                chat_response: response.data.choices[0].message.content,
-                message
-            }
-        ];
-        res.render("challenge-page", result[0]);
-    }).catch((error) => {
+    const { model, marca, product } = req.body;
+
+    let result = {};
+    const req_description = `Gere uma descrição de produto ${product} de modelo ${model} e da marca ${marca}`;
+    const req_keywords = `Gere 100 palavras chaves para o produto ${product} de modelo ${model} e da marca ${marca}`;
+
+    try {
+        const response_description = await openai.createChatCompletion({
+            model: "gpt-3.5-turbo",
+            messages: [{ role: "user", content: req_description }],
+        });
+
+        const response_keywords = await openai.createChatCompletion({
+            model: "gpt-3.5-turbo",
+            messages: [{ role: "user", content: req_keywords }],
+        });
+
+        result = {
+            req_message: `Descrição e palavras chaves para o produto ${product} de modelo ${model} e da marca ${marca}`,
+            response_keywords: response_keywords.data.choices[0].message.content,
+            response_description: response_description.data.choices[0].message.content
+        };
+    } catch (error) {
         console.log(error);
-    })
+    }
+
+    res.render("challenge-page", result);
+
 })
 
 module.exports = {

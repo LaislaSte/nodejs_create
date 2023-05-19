@@ -17,7 +17,7 @@
                             <a class="nav-link" href="/list-clients">Lista de Clientes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/talk-with-friend">Converse com um Amigo</a>
+                            <a class="nav-link" href="/talk-with-friend">Gere um Produto</a>
                         </li>
                     </ul>
                 </div>
@@ -26,28 +26,41 @@
     </header>
 
     <main>
-        <h1 class="mb-5 text-primary-sutle text-center">Chat Page</h1>
+        <h1 class="mb-5 text-primary-sutle text-center">Preencha para gerar descrição e palavras-chaves</h1>
         <form class="row g-3 needs-validation d-flex flex-row justify-content-center" action="/talk-with-chat"
             method="post">
             <div class="text-dark d-flex flex-column align-items-center col-6">
-
                 <div class="row mb-4 w-100 d-flex flex-row">
                     <div class="col">
-                        <label for="inputName" class="form-label fw-bold">Mensagem</label>
-                        <textarea type="text" cols="10" rows="5" class="form-control" id="message" name="message"
-                            placeholder="Qual sua mensagem?"></textarea>
-                        <div class="invalid-feedback">Mensagem</div>
+                        <label for="product" class="form-label fw-bold">Produto</label>
+                        <textarea type="text" cols="10" rows="5" class="form-control" id="product" name="product"
+                            placeholder="Digite produto desejado?"></textarea>
+                        <div class="invalid-feedback">Produto</div>
+                    </div>
+                </div>
+                <div class="row mb-4 w-100 d-flex flex-row">
+                    <div class="col">
+                        <label for="marca" class="form-label fw-bold">Marca</label>
+                        <textarea type="text" cols="10" rows="5" class="form-control" id="marca" name="marca"
+                            placeholder="Digite o nome da Marca"></textarea>
+                        <div class="invalid-feedback">Marca</div>
+                    </div>
+                </div>
+                <div class="row mb-4 w-100 d-flex flex-row">
+                    <div class="col">
+                        <label for="model" class="form-label fw-bold">Modelo</label>
+                        <textarea type="text" cols="10" rows="5" class="form-control" id="model" name="model"
+                            placeholder="Modelo do produto"></textarea>
+                        <div class="invalid-feedback">Modelo</div>
                     </div>
                 </div>
 
                 <div class="row mb-4 w-100 d-flex flex-row justify-content-start">
                     <div class="col-md-4">
-                        <button type="submit" class="button btn btn-outline-dark">Enviar Mensagem</button>
+                        <button type="submit" class="button btn btn-outline-dark">Gerar Resposta</button>
                     </div>
                 </div>
-
             </div>
-
         </form>
 
     </main>
