@@ -59,32 +59,32 @@
             {{#each agendamentos}}
             <row class="row mb-2 pb-3 border-bottom border-primary-sutle">
                 <div class="col-md-2">
-                    <label class="form-label">{{dataValues.name}}</label>
+                    <label class="form-label">{{data.name}}</label>
                 </div>
 
                 <div class="col-md-2">
-                    <label class="form-label">{{dataValues.cep}}</label>
+                    <label class="form-label">{{data.cep}}</label>
                 </div>
 
                 <div class="col-md-2">
-                    <label class="form-label">{{dataValues.address}}</label>
+                    <label class="form-label">{{data.address}}</label>
                 </div>
 
                 <div class="col-md-2">
-                    <label class="form-label">{{dataValues.phone}}</label>
+                    <label class="form-label">{{data.phone}}</label>
                 </div>
 
                 <div class="col-md-2">
-                    <label class="form-label">{{dataValues.date}}</label>
+                    <label class="form-label">{{data.date}}</label>
                 </div>
 
                 <div class="col-md-2">
-                    <label class="form-label ">{{dataValues.observation}}</label>
+                    <label class="form-label ">{{data.observation}}</label>
                 </div>
 
                 <div class="col-md-2 flex flex-row g-2">
-                    <a class="btn btn-outline-dark" href="/edit/{{dataValues.id}}">Alterar</a>
-                    <a class="btn btn-outline-danger" href="/delete/{{dataValues.id}}">Excluir</a>
+                    <a class="btn btn-outline-dark" href="/edit/{{id}}">Alterar</a>
+                    <a class="btn btn-outline-danger" href="/delete/{{id}}">Excluir</a>
                 </div>
 
             </row>

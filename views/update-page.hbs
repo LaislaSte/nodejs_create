@@ -3,13 +3,13 @@
     <h1 class="mb-5 text-primary-sutle text-center">Update Page</h1>
     <form class="row g-3 needs-validation d-flex flex-row justify-content-center" action="/update" method="post">
         <div class="text-dark d-flex flex-column align-items-center col-6">
-            {{#each agendamento}}
+            {{#each agendamento }}
             <div class="row mb-4 w-100 d-flex flex-row justify-content-center">
                 <div class="col">
-                    <label for="inputName" class="form-label fw-bold">Nome</label>
-                    <input type="hidden" class="form-control hidden" id="id" value="{{dataValues.id}}" name="id" />
+                    <label for="inputName" class="form-label fw-bold">Nome </label>
+                    <input type="hidden" class="form-control hidden" id="id" value="{{id}}" name="id" />
 
-                    <input type="text" class="form-control" id="name" value="{{dataValues.name}}" name="name"
+                    <input type="text" class="form-control" id="name" value="{{data.name}}" name="name"
                         placeholder="Nome Completo" required />
                     <div class="invalid-feedback">Nome.</div>
                 </div>
@@ -18,7 +18,7 @@
             <div class="row mb-4 w-100 d-flex flex-row justify-content-center">
                 <div class="col">
                     <label for="inputAddress" class="form-label fw-bold">CEP</label>
-                    <input type="text" class="form-control" id="CEP" value="{{dataValues.cep}}" name=" cep"
+                    <input type="text" class="form-control" id="CEP" value="{{data.cep}}" name="cep"
                         placeholder="Somente números" required />
                     <div class="invalid-feedback">CEP.</div>
                 </div>
@@ -27,7 +27,7 @@
             <div class="row mb-4 w-100 d-flex flex-row justify-content-center">
                 <div class="col">
                     <label for="inputCEP" class="form-label fw-bold">Endereço</label>
-                    <input type="text" class="form-control" id="address" value="{{dataValues.address}}" name="address"
+                    <input type="text" class="form-control" id="address" value="{{data.address}}" name="address"
                         placeholder="Rua" required />
                     <div class="invalid-feedback">Endereço.</div>
                 </div>
@@ -36,7 +36,7 @@
             <div class="row mb-4 w-100 d-flex flex-row justify-content-center">
                 <div class="col">
                     <label for="inputCEP" class="form-label fw-bold">Telefone</label>
-                    <input type="text" class="form-control" id="phone" value="{{dataValues.phone}}" name="phone"
+                    <input type="text" class="form-control" id="phone" value="{{data.phone}}" name="phone"
                         placeholder="Telefone" required />
                     <div class="invalid-feedback">Telefone.</div>
                 </div>
@@ -45,7 +45,7 @@
             <div class="row mb-4 w-100 d-flex flex-row justify-content-center">
                 <div class="col">
                     <label for="inputCEP" class="form-label fw-bold">Data de Agendamento</label>
-                    <input type="date" class="form-control" id="date" value="{{dataValues.date}}" name="date"
+                    <input type="date" class="form-control" id="date" value="{{data.date}}" name="date"
                         placeholder="Data" required />
                     <div class="invalid-feedback">Data de Agendamento.</div>
                 </div>
@@ -54,7 +54,7 @@
             <div class="row mb-4 w-100 d-flex flex-row justify-content-center">
                 <div class="col">
                     <label for="poinst" class="form-label fw-bold ">Observações</label>
-                    <input type="text" class="form-control" id="observation" value="{{dataValues.observation}}"
+                    <input type="text" class="form-control" id="observation" value="{{data.observation}}"
                         name="observation" placeholder="Observaçao" />
                     <div class="invalid-feedback">Observação.</div>
                 </div>

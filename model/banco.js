@@ -1,11 +1,14 @@
-const Sequelize = require("sequelize");
+const { getFirestore } = require('firebase-admin/firestore')
+var admin = require("firebase-admin");
+var serviceAccount = require("../projeto-agendamentos-d7259-firebase-adminsdk-8342g-26bd9b1574.json");
 
-const sequelize = new Sequelize("agendamento_crud", "root", "", {
-    host: "localhost",
-    dialect: "mysql"
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
 });
 
+
+const db = getFirestore()
+
 module.exports = {
-    Sequelize: Sequelize,
-    sequelize: sequelize
+    dbfirestore: db
 }

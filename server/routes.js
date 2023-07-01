@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const agendamento = require("../model/Agendamento");
+const dbfirestore = require("../model/banco");
 require('dotenv').config()
 
 const { Configuration, OpenAIApi } = require("openai");
@@ -11,71 +12,82 @@ const openai = new OpenAIApi(configuration);
 
 
 const agendamentoRoutes = Router();
-
 agendamentoRoutes.get("/", (req, res) => {
     res.render("create")
 });
 
-agendamentoRoutes.post("/register", (req, res) => {
-    agendamento.create({
-        name: req.body.name,
-        address: req.body.address,
-        cep: req.body.cep,
-        date: req.body.date,
-        phone: req.body.phone,
-        observation: req.body.observation
-    }).then(() => {
+agendamentoRoutes.post("/register", async (req, res) => {
+    try {
+        const respon = await dbfirestore.dbfirestore.collection('agendamentos').add({
+            name: req.body.name,
+            address: req.body.address,
+            cep: req.body.cep,
+            date: req.body.date,
+            phone: req.body.phone,
+            observation: req.body.observation
+        });
         res.redirect("/list-clients");
-    }).catch((erro) => {
-        res.send("Falha ao cadastrar: " + erro);
-    });
+    } catch (error) {
+        res.send("Falha ao cadastrar: " + error);
+    }
 });
 
-agendamentoRoutes.get("/list-clients", (req, res) => {
-    agendamento.findAll()
-        .then((agendamentos) => {
-            res.render("list-page",
+agendamentoRoutes.get("/list-clients", async (req, res) => {
+    var agendamentos = [];
+    try {
+        const snapshot = await dbfirestore.dbfirestore.collection('agendamentos').get();
+        snapshot.forEach((doc) => {
+            agendamentos.push(
                 {
-                    agendamentos
+                    data: doc.data(),
+                    id: doc.id
                 }
             );
-        })
-        .catch((error) => {
-            res.render("Ocorreu um erro " + error);
-        })
+        });
+        res.render("list-page", { agendamentos });
+    } catch (error) {
+        console.log(error);
+    }
 });
 
-agendamentoRoutes.get("/edit/:id", (req, res) => {
-    agendamento.findAll({ where: { 'id': req.params.id } }).then((result) => {
-        res.render("update-page", { agendamento: result })
-    }).catch((error) => {
+agendamentoRoutes.get("/edit/:id", async (req, res) => {
+    try {
+        const docRef = dbfirestore.dbfirestore.collection('agendamentos').doc(req.params.id);
+        const data = await docRef.get();
+        const agendamento = [{
+            data: data.data(),
+            id: data.id
+        }]
+        res.render("update-page", { agendamento });
+    } catch (error) {
         console.log(error);
-    })
-})
-agendamentoRoutes.post("/update", (req, res) => {
-    agendamento.update({
-        name: req.body.name,
-        address: req.body.address,
-        cep: req.body.cep,
-        date: req.body.date,
-        phone: req.body.phone,
-        observation: req.body.observation
-    }, {
-        where:
-            { 'id': req.body.id }
-    }).then((result) => {
-        res.redirect("/list-clients");
-    }).catch((error) => {
-        console.log(error);
-    })
+    }
 })
 
-agendamentoRoutes.get("/delete/:id", (req, res) => {
-    agendamento.destroy({ where: { 'id': req.params.id } }).then(() => {
+agendamentoRoutes.post("/update", async (req, res) => {
+    try {
+        const docRef = dbfirestore.dbfirestore.collection('agendamentos').doc(req.body.id);
+        const respo = await docRef.update({
+            name: req.body.name,
+            address: req.body.address,
+            cep: req.body.cep,
+            date: req.body.date,
+            phone: req.body.phone,
+            observation: req.body.observation
+        });
         res.redirect("/list-clients");
-    }).catch((error) => {
+    } catch (error) {
         console.log(error);
-    })
+    }
+})
+
+agendamentoRoutes.get("/delete/:id", async (req, res) => {
+    try {
+        const respon = await dbfirestore.dbfirestore.collection('agendamentos').doc(req.params.id).delete();
+        res.redirect("/list-clients");
+    } catch (error) {
+        console.log(error)
+    }
 })
 
 
